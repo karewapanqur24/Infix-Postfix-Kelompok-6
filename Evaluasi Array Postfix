@@ -79,3 +79,27 @@ void printEkspresi(vector<string>& ekspresi) {
     }
     cout << endl;
 }
+
+double evaluatePostfix(vector<string>& postfixArray) {
+    stack<double> nilai;
+    for (auto& post : postfixArray) {
+        if ((post[0] >= '0' && post[0] <= '9') || (post[0] == '-' && post.length() > 1)) {
+            nilai.push(stod(post));
+        } else {
+            double angka2 = nilai.top();
+            nilai.pop();
+            double angka1 = nilai.top();
+            nilai.pop();
+            if (post == "+") {
+                nilai.push(angka1 + angka2);
+            } else if (post == "-") {
+                nilai.push(angka1 - angka2);
+            } else if (post == "*") {
+                nilai.push(angka1 * angka2);
+            } else if (post == "/") {
+                nilai.push(angka1 / angka2);
+            }
+        }
+    }
+    return nilai.top();
+}
