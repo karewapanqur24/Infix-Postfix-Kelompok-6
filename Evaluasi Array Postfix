@@ -23,3 +23,17 @@ vector<string> strToInfix(string& inputString) {
     }
     return ekspresi;
 }
+
+vector<string> negatif(vector<string>& ekspresi) {
+    vector<string> hasil;
+    int panjang = ekspresi.size();
+    for (int i = 0; i < panjang; i++) {
+        if (ekspresi[i] == "-" && (i == 0 || ekspresi[i - 1] == "(" || ekspresi[i - 1] == "+" || ekspresi[i - 1] == "-" || ekspresi[i - 1] == "*" || ekspresi[i - 1] == "/" || ekspresi[i - 1] == "%")) {
+            hasil.push_back("-1");
+            hasil.push_back("*");
+        } else {
+            hasil.push_back(ekspresi[i]);
+        }
+    }
+    return hasil;
+}
