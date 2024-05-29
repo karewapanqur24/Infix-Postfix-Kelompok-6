@@ -72,3 +72,10 @@ vector<string> infixToPostfix(vector<string>& infixArray) {
     }
     return postfix;
 }
+
+void printEkspresi(vector<string>& ekspresi) {
+    for (auto& token : ekspresi) {
+        cout << token << " ";
+    }
+    cout << endl;
+}
