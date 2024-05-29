@@ -57,7 +57,7 @@ vector<string> infixToPostfix(vector<string>& infixArray) {
                 postfix.push_back(stackOperator.top());
                 stackOperator.pop();
             }
-            stackOperator.pop();
+            stackOperator.pop(); //pop()
         } else {
             while (!stackOperator.empty() && prioritas(stackOperator.top()) >= prioritas(token)) {
                 postfix.push_back(stackOperator.top());
