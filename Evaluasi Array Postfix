@@ -103,3 +103,13 @@ double evaluatePostfix(vector<string>& postfixArray) {
     }
     return nilai.top();
 }
+
+int main() {
+    string inputString;
+    getline(cin, inputString);
+    vector<string> ekspresi = strToInfix(inputString);
+    vector<string> ekspresiAkhir = negatif(ekspresi);
+    vector<string> ekspresiPostfix = infixToPostfix(ekspresiAkhir);
+    cout << evaluatePostfix(ekspresiPostfix);
+    return 0;
+}
