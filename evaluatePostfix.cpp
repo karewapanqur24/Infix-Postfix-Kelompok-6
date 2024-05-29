@@ -8,10 +8,8 @@ vector<string> strToInfix(string& inputString) {
     vector<string> ekspresi;
     string angka = "";
     int panjang = inputString.length();
-
     for (int i = 0; i < panjang; i++) {
         char now = inputString[i];
-
         if ((now >= '0' && now <= '9') || (now == '-' && (i == 0 || inputString[i - 1] == '('))) {
             angka += now;
             while (i + 1 < panjang && inputString[i + 1] >= '0' && inputString[i + 1] <= '9') {
@@ -29,7 +27,6 @@ vector<string> strToInfix(string& inputString) {
 vector<string> negatif(vector<string>& ekspresi) {
     vector<string> hasil;
     int panjang = ekspresi.size();
-
     for (int i = 0; i < panjang; i++) {
         if (ekspresi[i] == "-" && (i == 0 || ekspresi[i - 1] == "(" || ekspresi[i - 1] == "+" || ekspresi[i - 1] == "-" || ekspresi[i - 1] == "*" || ekspresi[i - 1] == "/" || ekspresi[i - 1] == "%")) {
             hasil.push_back("-1");
@@ -50,7 +47,6 @@ int prioritas(string op) {
 vector<string> infixToPostfix(vector<string>& infixArray) {
     vector<string> postfix;
     stack<string> stackOperator;
-
     for (auto& token : infixArray) {
         if ((token[0] >= '0' && token[0] <= '9') || (token[0] == '-' && token.length() > 1)) {
             postfix.push_back(token);
