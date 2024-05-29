@@ -12,7 +12,7 @@ vector<string> strToInfix(string& inputString){
     for(int i = 0; i < panjang; i++){
         char now = inputString[i];
         
-        if((now >= '0' && <= '9') || (now == '-' && (i == 0 || inputString[i-1] == '('))){
+        if((now >= '0' && now <= '9') || (now == '-' && (i == 0 || inputString[i-1] == '('))){
             angka += now;
             while(i + 1 < panjang && inputString[i + 1] >= '0' && inputString[i + 1] <= '9'){
                 angka += inputString[++i];
@@ -31,7 +31,7 @@ vector<string> negatif(vector<string>& ekspresi){
     int panjang = ekspresi.size();
     
     for(int i = 0; i < panjang; i++){
-        if(eskpresi[i] == "-" && (i == 0 || ekspresi [ i - 1] == "(" || ekspresi [i - 1] == "+" || ekspresi [i - 1] == "-" || ekspresi [i - 1] == "*" || ekspresi [i - 1] == "/" || ekspresi [i - 1] == "&")){
+        if(ekspresi[i] == "-" && (i == 0 || ekspresi [ i - 1] == "(" || ekspresi [i - 1] == "+" || ekspresi [i - 1] == "-" || ekspresi [i - 1] == "*" || ekspresi [i - 1] == "/" || ekspresi [i - 1] == "&")){
             hasil.push_back("-1");
             hasil.push_back("*");
         }else{
