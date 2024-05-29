@@ -66,3 +66,9 @@ vector<string> infixToPostfix(vector<string>& infixArray) {
             stackOperator.push(token);
         }
     }
+    while (!stackOperator.empty()) {
+        postfix.push_back(stackOperator.top());
+        stackOperator.pop();
+    }
+    return postfix;
+}
