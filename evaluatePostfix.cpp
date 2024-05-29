@@ -1,7 +1,8 @@
-#include<iostream>
-#include<string>
-#include<stack>
-#include<vector>
+#include <iostream>
+#include <string>
+#include <stack>
+#include <vector>
+
 using namespace std;
 
 vector<string> strToInfix(string& inputString) {
@@ -73,44 +74,43 @@ vector<string> infixToPostfix(vector<string>& infixArray) {
     return postfix;
 }
 
-void printEkpr(vector<string>&ekspresi){
-    for(auto&token:ekspresi){
-        cout<<token<<" ";
+void printEkspresi(vector<string>& ekspresi) {
+    for (auto& token : ekspresi) {
+        cout << token << " ";
     }
-    cout<<endl;
+    cout << endl;
 }
 
-double evaluatePostfix(vector<string> & postfixArray){
+double evaluatePostfix(vector<string>& postfixArray) {
     stack<double> nilai;
-    for(auto& post:postfixArray){
-        if((post[0] >= '0'&&post[0]<='9') || (post[0] == '-' && post.length() > 1)){
+    for (auto& post : postfixArray) {
+        if ((post[0] >= '0' && post[0] <= '9') || (post[0] == '-' && post.length() > 1)) {
             nilai.push(stod(post));
-        }else{
-            double angka2=nilai.top();
+        } else {
+            double angka2 = nilai.top();
             nilai.pop();
-            double angka1=nilai.top();
+            double angka1 = nilai.top();
             nilai.pop();
-            
-            if(post=="+"){
-                nilai.push(angka1+angka2);
-            } else if (post=="-"){
-                nilai.push(angka1-angka2);
-            } else if (post=="*"){
-                nilai.push(angka1*angka2);
-            } else if (post=="/"){
-                nilai.push(angka1/angka2);
+            if (post == "+") {
+                nilai.push(angka1 + angka2);
+            } else if (post == "-") {
+                nilai.push(angka1 - angka2);
+            } else if (post == "*") {
+                nilai.push(angka1 * angka2);
+            } else if (post == "/") {
+                nilai.push(angka1 / angka2);
             }
         }
     }
     return nilai.top();
 }
 
-int main(){
+int main() {
     string inputString;
-    getline(cin,inputString);
-    vector<string> ekspresi=strToInfix(inputString);
-    vector<string> ekspresiAkhir=negatif(ekspresi);
-    vector<string> ekspresiPostfix=infixToPostfix(ekspresiAkhir);
-    cout<<evaluatePostfix(ekspresiPostfix);
+    getline(cin, inputString);
+    vector<string> ekspresi = strToInfix(inputString);
+    vector<string> ekspresiAkhir = negatif(ekspresi);
+    vector<string> ekspresiPostfix = infixToPostfix(ekspresiAkhir);
+    cout << evaluatePostfix(ekspresiPostfix);
     return 0;
 }
