@@ -37,3 +37,9 @@ vector<string> negatif(vector<string>& ekspresi) {
     }
     return hasil;
 }
+
+int prioritas(string op) {
+    if (op == "+" || op == "-") return 1;
+    if (op == "*" || op == "/") return 2;
+    return 0;
+}
