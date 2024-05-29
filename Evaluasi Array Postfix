@@ -43,3 +43,26 @@ int prioritas(string op) {
     if (op == "*" || op == "/") return 2;
     return 0;
 }
+
+vector<string> infixToPostfix(vector<string>& infixArray) {
+    vector<string> postfix;
+    stack<string> stackOperator;
+    for (auto& token : infixArray) {
+        if ((token[0] >= '0' && token[0] <= '9') || (token[0] == '-' && token.length() > 1)) {
+            postfix.push_back(token);
+        } else if (token == "(") {
+            stackOperator.push(token);
+        } else if (token == ")") {
+            while (!stackOperator.empty() && stackOperator.top() != "(") {
+                postfix.push_back(stackOperator.top());
+                stackOperator.pop();
+            }
+            stackOperator.pop();  // Pop the '(' from the stack
+        } else {
+            while (!stackOperator.empty() && prioritas(stackOperator.top()) >= prioritas(token)) {
+                postfix.push_back(stackOperator.top());
+                stackOperator.pop();
+            }
+            stackOperator.push(token);
+        }
+    }
